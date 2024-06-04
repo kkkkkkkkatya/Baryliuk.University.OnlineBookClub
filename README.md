@@ -112,8 +112,15 @@ Add your project documentation here.
 - Define API endpoints for reporting and moderation :heavy_check_mark:
 - Write unit tests for reporting system functionalities :heavy_check_mark:
 
+
 ## Anti-Lab 2
 - Barvinskyi
 - [Project](https://github.com/VladBarvinskyi323/Barvinskyi.universitu.FitnessTracker)
 - [Fork](https://github.com/VladBarvinskyi323/Baryliuk.University.OnlineBookClub)
+
+
+## Anti Lab 2
+- Name: Victoria Yatsiuk
+- Project: https://github.com/yavictoria/Yatsiuk.University.Pinterest
+- Fork: https://github.com/yavictoria/Baryliuk.University.OnlineBookClub
 
