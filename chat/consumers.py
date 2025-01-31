@@ -59,3 +59,4 @@ class ChatConsumer(AsyncWebsocketConsumer):
     @sync_to_async
     def get_receiver_user(self):
         return User.objects.get(username=self.room_name)
+
