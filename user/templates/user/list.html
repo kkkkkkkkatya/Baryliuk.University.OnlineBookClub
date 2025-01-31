@@ -4,16 +4,9 @@
 {% block content %}
 <div class="row mb-3 ">
     <div class="col-10">
-        <h1>Author Q&A sessions</h1>
+        <h1>All users</h1>
     </div>
-    {% if user.is_staff == True %}
-    <div class="col-2">
-        <a href=" {% url 'session:session-create' %}" class="btn btn-outline-success">Create session</a>
-    </div>
-    {% endif %}
-    <div class="col-6">
-        <a href=" {% url 'session:lobby' %}" class="btn btn-outline-dark">Join room</a>
-    </div>
+
 
 </div>
 {% if error %}
@@ -23,13 +16,13 @@
 <div class="container col-10">
     <div class="row justify-content-center">
         {% for el in instance_list %}
-        <a href=# class="btn btn-outline-dark mt-3 mb-3">
+        <a href="{% url 'user:show' id=el.id %}" class="btn btn-outline-dark mt-3 mb-3">
             <style>
     .forum-item {
         text-align: left;
     }
     .topic {
-        font-size: 24px; /* Adjust font size as needed */
+        font-size: 30px; /* Adjust font size as needed */
         font-weight: bold; /* Add bold font weight */
     }
     .details {
@@ -39,15 +32,11 @@
     .name {
         margin-right: 10px; /* Add right margin to separate from date */
     }
-    .date {
-        font-style: italic; /* Add italic style to date */
-    }
 </style>
             <div class="forum-item">
-                <p class="topic">Room name: {{ el.room_name }}</p>
+                <p class="topic">{{ el.username }}</p>
                 <div class="details">
-                    <p class="name">Author: {{ el.author }}</p>
-                    <p class="date">starts {{ el.date_start }}, ends {{ el.date_end }}</p>
+                    <p class="name">#{{ el.email }}</p>
                 </div>
             </div>
         </a>

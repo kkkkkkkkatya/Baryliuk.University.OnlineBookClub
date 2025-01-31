@@ -25,6 +25,7 @@
     <h6 style="font-weight: bold;"> email: {{ profile_u.user.email}} </h6>
     <h7 style="color: purple;">#{{profile_u.interest}}</h7>
     <h6 style="font-size: 18px;">about myself: {{profile_u.description}}</h6>
+        {% if groups_list %}
     <h4 style="text-decoration: underline;">Groups:</h4>
     <div class="container">
         <div class="row justify-content-left col-5">
@@ -37,7 +38,24 @@
             {% endfor %}
         </div>
     </div>
-</div>
+        {% endif %}
+    {% if session %}
+        <h4 style="text-decoration: underline;">Session:</h4>
+    <div class="container">
+        <div class="row justify-content-left col-5">
+            <a href="{% url 'session:list' %}" class="btn btn-outline-dark mt-3 mb-3">
+                <div class="forum-item">
+                    <p class="topic" style="text-align: left; font-size: 20px; font-weight: bold;">{{ session }}</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+    {% endif %}
+{% if user != profile_u.user %}
+        <a href="{% url 'chat:chat' room_name=profile_u.user.username %}" class="btn btn-primary">Start Chat</a>
+{% endif %}
+    </div>
 </div>
 
 <a href="{% url 'user:edit' id=profile_u.user.id %}" class="btn btn-outline-success">
