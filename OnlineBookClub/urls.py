@@ -30,6 +30,7 @@ urlpatterns = [
     path('session/', include('session.urls', namespace='session')),
     path('books/', include('books.urls', namespace='books')),
     path('manager/', include('manager.urls', namespace='manager')),
+    path('', include('chat.urls')),
 
 
 ]

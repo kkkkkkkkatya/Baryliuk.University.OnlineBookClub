@@ -7,12 +7,18 @@ from main.views import index
 from django.conf import settings
 import os
 from group.models import RelGroupUser, Group
+from session.models import Session
 
 # Create your views here.
+
+def user_list(request):
+    users_list = User.objects.order_by('-id')
+    return render(request, 'user/list.html', {'instance_list':users_list})
+
 ### show profile ###
 def show(request, id):
-    print(f"=== user, action: show === ")
-    print(f"id: ", id)
+    #print(f"=== user, action: show === ")
+    #print(f"id: ", id)
     action= "show"
     error = keeper_service.pop("error")
     user_profile = []
@@ -22,11 +28,12 @@ def show(request, id):
     groups_list = ''
 
     user_profile = Profile_user.objects.filter(user_id=id)
-    print(f"user_profile: ", user_profile)
+    #print(f"user_profile: ", user_profile)
 
     if user_profile.exists():
         profile_u = Profile_user.objects.get(user_id=id)
-        print(f"profile_u ", profile_u)
+        #print(f"profile_u ", profile_u)
+        session = Session.objects.filter(author=id).values_list('room_name', flat=True).first()
 
         member = RelGroupUser.objects.filter(user_id=id)
         if member.exists():
@@ -35,7 +42,7 @@ def show(request, id):
                              join group_group g on g.id = r.group_id
                              where r.user_id = {id}"""
             groups_list = RelGroupUser.objects.raw(sql)
-            print(f" groups_list", groups_list)
+            #print(f" groups_list", groups_list)
 
 
     else:
@@ -45,7 +52,7 @@ def show(request, id):
 
     return render(request, 'user/show.html',
                   { 'error':error, 'id':id, 'image_profile':image_profile,
-                   'profile_u':profile_u, 'groups_list':groups_list})
+                   'profile_u':profile_u, 'groups_list':groups_list, 'session':session })
 
 
 ### edit user ###

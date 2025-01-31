@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'daphne',
+    'channels',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
@@ -50,7 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     ### New apps
-
+    'crispy_bootstrap4',
     'crispy_forms',
     'main',
     'registry',
@@ -61,6 +63,9 @@ INSTALLED_APPS = [
     'session',
     'books',
     'manager',
+    'django_extensions',
+    'chat',
+
 ]
  ### NEEEEW
 
@@ -97,6 +102,14 @@ TEMPLATES = [
         },
     },
 ]
+
+ASGI_APPLICATION = 'OnlineBookClub.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 WSGI_APPLICATION = 'OnlineBookClub.wsgi.application'
 
@@ -174,6 +187,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -193,3 +210,5 @@ SESSION_COOKIE_SECURE = True  # Set to True if using HTTPS in production
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Or 'bootstrap5', 'tailwind', etc.
